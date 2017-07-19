@@ -24,12 +24,11 @@ GET /sell/buyer/product/list
             "type": 1,
             "foods": [
                 {
+                    "id": "123456",
                     "name": "皮蛋粥",
                     "price": 1.2,
                     "description": "好吃的皮蛋粥",
-                    "info": "皮蛋粥采用野生鸡蛋, 七七四九小时熬制而成",
                     "icon": "http://xxx.com",
-                    "image": "http://xxx.com"
                 }
             ]
         },
@@ -38,12 +37,11 @@ GET /sell/buyer/product/list
             "type": 2,
             "foods": [
                 {
+                    "id": "123457",
                     "name": "慕斯蛋糕",
                     "price": 10.9,
                     "description": "美味爽口",
-                    "info": "采用纯天然植物奶油精制而成",
                     "icon": "http://xxx.com",
-                    "image": "http://xxx.com"
                 }
             ]
         }
@@ -94,6 +92,8 @@ GET /sell/buyer/order/list
 
 ```
 openid: 18eu2jwk2kse3r42e2e
+page: 0 //从第0页开始
+size: 10
 ```
 
 返回
@@ -111,7 +111,6 @@ openid: 18eu2jwk2kse3r42e2e
       "buyerOpenid": "18eu2jwk2kse3r42e2e",
       "orderAmount": 0,
       "orderStatus": 0,
-      "payType": 1,
       "payStatus": 0,
       "createTime": 1490171219,
       "updateTime": 1490171219,
@@ -125,7 +124,6 @@ openid: 18eu2jwk2kse3r42e2e
       "buyerOpenid": "18eu2jwk2kse3r42e2e",
       "orderAmount": 0,
       "orderStatus": 0,
-      "payType": 1,
       "payStatus": 0,
       "createTime": 1490171219,
       "updateTime": 1490171219,
@@ -161,7 +159,6 @@ orderId: 161899085773669363
           "buyerOpenid": "18eu2jwk2kse3r42e2e",
           "orderAmount": 18,
           "orderStatus": 0,
-          "payType": 0,
           "payStatus": 0,
           "createTime": 1490177352,
           "updateTime": 1490177352,
@@ -178,6 +175,29 @@ orderId: 161899085773669363
             }
         ]
     }
+}
+```
+
+###取消订单
+
+```
+POST /sell/buyer/order/cancel
+```
+
+参数
+
+```
+openid: 18eu2jwk2kse3r42e2e
+orderId: 161899085773669363
+```
+
+返回
+
+```
+{
+    "code": 0,
+    "msg": "成功",
+    "data": null
 }
 ```
 
@@ -198,4 +218,23 @@ returnUrl: http://xxx.com/abc  //【必填】
 ```
 http://xxx.com/abc?openid=oZxSYw5ldcxv6H0EU67GgSXOUrVg
 ```
+
+###支付订单
+```
+重定向 /sell/pay/create
+```
+
+参数
+
+```
+orderId: 161899085773669363
+returnUrl: http://xxx.com/abc/order/161899085773669363
+```
+
+返回
+
+```
+http://xxx.com/abc/order/161899085773669363
+```
+
 
